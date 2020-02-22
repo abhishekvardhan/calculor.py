@@ -1,0 +1,64 @@
+from tkinter import *
+par=Tk()
+par.title("simple calculator...!!!")
+k=0
+addnum=0
+e1=Entry(par,width=50,borderwidth=5)
+e1.grid(row=0,column=0,columnspan=3,pady=20,padx=20)
+def bu(number):
+    current=e1.get()
+    e1.delete(0, END)
+    e1.insert(0,str(current)+str(number))
+def bclear():
+    e1.delete(0,END)
+def badd():
+    global k,addnum
+    k=1
+    addnum=int(e1.get())
+    e1.delete(0, END)
+def bsub():
+    global k,addnum
+    k = 2
+    addnum=int(e1.get())
+    e1.delete(0, END)
+def bmul():
+    global k,addnum
+    k = 3
+    addnum=int(e1.get())
+    e1.delete(0, END)
+def bdiv():
+    global k,addnum
+    k = 4
+    addnum=int(e1.get())
+    e1.delete(0, END)
+def bequal():
+    snum=int(e1.get())
+    e1.delete(0, END)
+    if(k==1):
+        e1.insert(0,addnum+snum)
+    elif(k==2):
+        e1.insert(0,addnum-snum)
+    elif(k==3):
+        e1.insert(0,addnum*snum)
+    elif(k==4):
+        if snum==0:
+            e1.insert(0,"we can't divide a nuber by 0")
+        else:
+            e1.insert(0,addnum/snum)
+b1=Button(par,text="1",width=3,pady=5,padx=15,command=lambda:bu(1)).grid(row=1,column=0)
+b2=Button(par,text="2",width=3,pady=5,padx=15,command=lambda:bu(2)).grid(row=1,column=1)
+b3=Button(par,text="3",width=3,pady=5,padx=15,command=lambda:bu(3)).grid(row=1,column=2)
+b4=Button(par,text="4",width=3,pady=5,padx=15,command=lambda:bu(4)).grid(row=2,column=0)
+b5=Button(par,text="5",width=3,pady=5,padx=15,command=lambda:bu(5)).grid(row=2,column=1)
+b6=Button(par,text="6",width=3,pady=5,padx=15,command=lambda:bu(6)).grid(row=2,column=2)
+b7=Button(par,text="7",width=3,pady=5,padx=15,command=lambda:bu(7)).grid(row=3,column=0)
+b8=Button(par,text="8",width=3,pady=5,padx=15,command=lambda:bu(8)).grid(row=3,column=1)
+b9=Button(par,text="9",width=3,pady=5,padx=15,command=lambda: bu(9)).grid(row=3,column=2)
+b0=Button(par,text="0",width=3,pady=5,padx=15,command=lambda: bu(0)).grid(row=4,column=1)
+bsub=Button(par,text="-",width=3,pady=5,padx=15,command=bsub).grid(row=4,column=0)
+badd=Button(par,text="+",width=3,pady=55,padx=15,command=badd).grid(row=3,column=3,rowspan=3)
+bdiv=Button(par,text="/",width=3,pady=5,padx=15,command=bdiv).grid(row=2,column=3)
+bmul=Button(par,text="x",width=3,pady=5,padx=15,command=bmul).grid(row=1,column=3)
+b=Button(par,text="=",width=3,pady=5,padx=15,command=bequal).grid(row=4,column=2)
+bc=Button(par,text="clear",width=3,pady=10,padx=95,command=bclear).grid(row=5,column=0,columnspan=3)
+par.mainloop()
